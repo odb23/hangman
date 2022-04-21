@@ -1,24 +1,38 @@
-import logo from './logo.svg';
+import Figure from './components/Figure';
+import WrongLetters from './components/WrongLetters';
+import Word from './components/Word'
 import './App.css';
+import Popup from './components/Popup';
+import Notification from './components/Notification';
+import { useState } from 'react';
+
+const words = ['application', 'programming', 'interface', 'wizard'];
+
+let selectedWord = words[Math.floor(Math.random() * words.length)];
+
+let playable = true;
+const correctLetters = [];
+const wrongLetters = [];
+
 
 function App() {
+  const [playable, setPlayable] = useState(true);
+  const [correctLetters, setCorrectLetters] = useState([]);
+  const [wrongLetters, setWrongLetters] = useState([]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <h1>Hangman</h1>
+      <p>Find the hidden word - Enter a letter </p>
+
+      <div className='game-container'>
+        <Figure />
+        <WrongLetters />
+        <Word />
+      </div>
+      <Popup />
+      <Notification />
+    </>
   );
 }
 
